@@ -93,7 +93,7 @@ Create a navigation component (header or sidebar) that includes:
 - Proper use of React patterns and best practices
 - Consistent code formatting
 - **Browser Support:** Latest Chrome browser only
-- Responsive design (Assume desktop size screen only)
+- Responsive design
 
 ## Tech Stack
 
