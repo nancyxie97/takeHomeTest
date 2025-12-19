@@ -1,15 +1,20 @@
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-  ],
-  ignorePatterns: ["dist", ".eslintrc.cjs", "tailwind.config.js"],
-  parser: "@typescript-eslint/parser",
-  plugins: ["react-refresh"],
+  parser: "@typescript-eslint/parser", // needed for TS/TSX
+  plugins: ["@typescript-eslint", "unused-imports"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   rules: {
-    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+    // Automatically remove unused imports on fix
+    "unused-imports/no-unused-imports": "error",
+
+    // Optionally highlight unused vars too
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
   },
 };

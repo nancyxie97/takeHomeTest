@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root {
+    background-color: hsl(var(--background));
+    height: 100%;
+    width: 100%;
+}
+
+@layer base {
+    :root {
+        --background: 210 20% 95%;
+        --surface: 0 0% 98%;
+        --foreground: 222 47% 11%;
+
+        --accent: 213 94% 28%;
+
+        --border: 214 32% 91%;
+        --muted: 220 14% 91%;
+
+        --radius: 0.75rem;
+
+        --success: 145 70% 35%;
+        --success-foreground: 145 85% 90%;
+
+        --warning: 42 95% 40%;
+        --warning-foreground: 42 100% 92%;
+
+        --danger: 0 75% 45%;
+        --danger-foreground: 0 100% 92%;
+
+        --blue: 210 100% 50%;
+        --blue-foreground: 210 95% 25%;
+
+        --purple: 271 76% 53%;
+        --purple-foreground: 271 80% 25%;
+    }
+
+    .dark {
+        --background: 222 47% 6%;
+        --surface: 222 47% 11%;
+        --foreground: 210 40% 98%;
+
+        --accent: 213 94% 58%;
+
+        --border: 217 32% 17%;
+        --muted: 217 32% 17%;
+
+        --success: 145 70% 55%;
+        --success-foreground: 145 60% 20%;
+
+        --warning: 42 95% 60%;
+        --warning-foreground: 42 70% 22%;
+
+        --danger: 0 80% 65%;
+        --danger-foreground: 0 65% 22%;
+
+        --blue: 210 100% 45%;
+        --blue-foreground: 210 95% 70%;
+
+        --purple: 271 76% 45%;
+        --purple-foreground: 271 80% 70%;
+    }
+}

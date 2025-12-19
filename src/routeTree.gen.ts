@@ -10,104 +10,104 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TableOverviewImport } from './routes/tableOverview'
-import { Route as CandleSticksImport } from './routes/candleSticks'
-import { Route as IndexImport } from './routes/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as TableOverviewImport } from "./routes/tableOverview";
+import { Route as CandleSticksImport } from "./routes/candleSticks";
+import { Route as IndexImport } from "./routes/index";
 
 // Create/Update Routes
 
 const TableOverviewRoute = TableOverviewImport.update({
-  id: '/tableOverview',
-  path: '/tableOverview',
+  id: "/tableOverview",
+  path: "/tableOverview",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const CandleSticksRoute = CandleSticksImport.update({
-  id: '/candleSticks',
-  path: '/candleSticks',
+  id: "/candleSticks",
+  path: "/candleSticks",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/candleSticks': {
-      id: '/candleSticks'
-      path: '/candleSticks'
-      fullPath: '/candleSticks'
-      preLoaderRoute: typeof CandleSticksImport
-      parentRoute: typeof rootRoute
-    }
-    '/tableOverview': {
-      id: '/tableOverview'
-      path: '/tableOverview'
-      fullPath: '/tableOverview'
-      preLoaderRoute: typeof TableOverviewImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/candleSticks": {
+      id: "/candleSticks";
+      path: "/candleSticks";
+      fullPath: "/candleSticks";
+      preLoaderRoute: typeof CandleSticksImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/tableOverview": {
+      id: "/tableOverview";
+      path: "/tableOverview";
+      fullPath: "/tableOverview";
+      preLoaderRoute: typeof TableOverviewImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  "/": typeof IndexRoute;
+  "/candleSticks": typeof CandleSticksRoute;
+  "/tableOverview": typeof TableOverviewRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  "/": typeof IndexRoute;
+  "/candleSticks": typeof CandleSticksRoute;
+  "/tableOverview": typeof TableOverviewRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/candleSticks": typeof CandleSticksRoute;
+  "/tableOverview": typeof TableOverviewRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/candleSticks' | '/tableOverview'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candleSticks' | '/tableOverview'
-  id: '__root__' | '/' | '/candleSticks' | '/tableOverview'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/candleSticks" | "/tableOverview";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/candleSticks" | "/tableOverview";
+  id: "__root__" | "/" | "/candleSticks" | "/tableOverview";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CandleSticksRoute: typeof CandleSticksRoute
-  TableOverviewRoute: typeof TableOverviewRoute
+  IndexRoute: typeof IndexRoute;
+  CandleSticksRoute: typeof CandleSticksRoute;
+  TableOverviewRoute: typeof TableOverviewRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CandleSticksRoute: CandleSticksRoute,
   TableOverviewRoute: TableOverviewRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

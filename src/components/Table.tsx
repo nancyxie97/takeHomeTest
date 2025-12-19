@@ -1,61 +1,57 @@
-import { useEffect, useRef, useState } from 'react'
-import { AgGridReact } from 'ag-grid-react'
-import { colorSchemeDarkBlue, GridOptions, themeQuartz } from 'ag-grid-community'
-import tradesData from '../data/homePage/trades.json'
-import { useIsDarkMode } from '@/stores/DarkModeStore'
-import { TRADES_COLUMN_DEFS } from '@/data/columnDefs'
+import { useRef } from "react";
+import { AgGridReact } from "ag-grid-react";
+import {
+	colorSchemeDarkBlue,
+	ColDef,
+	GridOptions,
+	themeQuartz,
+} from "ag-grid-enterprise";
+import { useIsDarkMode } from "@/stores/DarkModeStore";
 
-interface Trade {
-	id: string
-	status: string
-	accountId: string
-	positionId: string
-	price: number
-	quantity: number
-	side: string
-	ticker: string
-	orderTime: string
-	lastUpdate: string
-	currency: string
-}
-
-const ROW_ID = 'id'
+const ROW_ID = "id";
 
 const defaultColDef = {
-	minWidth: 150,
+	minWidth: 80,
 	flex: 1,
-	filter: 'agTextColumnFilter',
+	filter: "agSetColumnFilter",
 	resizable: true,
-	sortable: true
+	sortable: true,
+	suppressMenu: true,
+};
+
+interface TableProps {
+	columnDefs: ColDef[];
+	data: Record<string, unknown>[];
+	title?: string;
+	gridOptions?: Partial<GridOptions>;
 }
 
-export default function Table() {
-	const gridRef = useRef<AgGridReact>(null)
-	const [trades] = useState<Trade[]>(tradesData as Trade[])
-	const isDarkMode = useIsDarkMode()
-	const theme = isDarkMode ? themeQuartz.withPart(colorSchemeDarkBlue) : themeQuartz
+export default function Table({ columnDefs, data, title, gridOptions }: TableProps) {
+	const gridRef = useRef<AgGridReact>(null);
+	const isDarkMode = useIsDarkMode();
+	const theme = isDarkMode
+		? themeQuartz.withPart(colorSchemeDarkBlue)
+		: themeQuartz;
 
-	const gridOptions: GridOptions = {
-		theme: theme,
-		columnDefs: TRADES_COLUMN_DEFS,
-		defaultColDef: defaultColDef,
-		rowModelType: 'clientSide',
-		rowData: trades,
+	const mergedGridOptions: GridOptions = {
+		theme,
+		columnDefs,
+		defaultColDef,
+		rowModelType: "clientSide",
+		rowData: data,
 		pagination: true,
 		paginationPageSize: 50,
-		getRowId: (params: any) => params.data[ROW_ID]
-	}
-
-	useEffect(() => {
-		if (gridRef.current?.api) {
-			gridRef.current.api.setGridOption('rowData', trades)
-		}
-	}, [trades])
+		getRowId: (params) => params.data[ROW_ID] as string,
+		...gridOptions
+	};
 
 	return (
-		<div className="w-[700px] h-[450px]">
-			<h1 className="">Trades Table 📅</h1>
-			<AgGridReact ref={gridRef} {...gridOptions} />
+		<div className="w-full h-[600px] flex flex-col">
+			{title && <h1 className="mb-2 shrink-0">{title}</h1>}
+			<div key={title} className="flex-1 min-h-0">
+				<AgGridReact ref={gridRef} {...mergedGridOptions} />
+			</div>
 		</div>
-	)
+	);
 }
+

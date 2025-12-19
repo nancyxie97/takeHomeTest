@@ -8,236 +8,236 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TestImport } from './routes/test'
-import { Route as PostsIndexImport } from './routes/posts/index'
-import { Route as TestTabIdImport } from './routes/test.$tabId'
-import { Route as PostsPostIdImport } from './routes/posts/$postId'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as TestImport } from "./routes/test";
+import { Route as PostsIndexImport } from "./routes/posts/index";
+import { Route as TestTabIdImport } from "./routes/test.$tabId";
+import { Route as PostsPostIdImport } from "./routes/posts/$postId";
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
-const IndexLazyImport = createFileRoute('/')()
-const AboutSystemLazyImport = createFileRoute('/about/system')()
-const AboutNextLazyImport = createFileRoute('/about/next')()
+const AboutLazyImport = createFileRoute("/about")();
+const IndexLazyImport = createFileRoute("/")();
+const AboutSystemLazyImport = createFileRoute("/about/system")();
+const AboutNextLazyImport = createFileRoute("/about/next")();
 
 // Create/Update Routes
 
 const AboutLazyRoute = AboutLazyImport.update({
-  id: '/about',
-  path: '/about',
+  id: "/about",
+  path: "/about",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/about.lazy").then((d) => d.Route));
 
 const TestRoute = TestImport.update({
-  id: '/test',
-  path: '/test',
+  id: "/test",
+  path: "/test",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexLazyRoute = IndexLazyImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/index.lazy").then((d) => d.Route));
 
 const PostsIndexRoute = PostsIndexImport.update({
-  id: '/posts/',
-  path: '/posts/',
+  id: "/posts/",
+  path: "/posts/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AboutSystemLazyRoute = AboutSystemLazyImport.update({
-  id: '/system',
-  path: '/system',
+  id: "/system",
+  path: "/system",
   getParentRoute: () => AboutLazyRoute,
-} as any).lazy(() => import('./routes/about.system.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/about.system.lazy").then((d) => d.Route));
 
 const AboutNextLazyRoute = AboutNextLazyImport.update({
-  id: '/next',
-  path: '/next',
+  id: "/next",
+  path: "/next",
   getParentRoute: () => AboutLazyRoute,
-} as any).lazy(() => import('./routes/about.next.lazy').then((d) => d.Route))
+} as any).lazy(() => import("./routes/about.next.lazy").then((d) => d.Route));
 
 const TestTabIdRoute = TestTabIdImport.update({
-  id: '/$tabId',
-  path: '/$tabId',
+  id: "/$tabId",
+  path: "/$tabId",
   getParentRoute: () => TestRoute,
-} as any)
+} as any);
 
 const PostsPostIdRoute = PostsPostIdImport.update({
-  id: '/posts/$postId',
-  path: '/posts/$postId',
+  id: "/posts/$postId",
+  path: "/posts/$postId",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/test': {
-      id: '/test'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof TestImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/posts/$postId': {
-      id: '/posts/$postId'
-      path: '/posts/$postId'
-      fullPath: '/posts/$postId'
-      preLoaderRoute: typeof PostsPostIdImport
-      parentRoute: typeof rootRoute
-    }
-    '/test/$tabId': {
-      id: '/test/$tabId'
-      path: '/$tabId'
-      fullPath: '/test/$tabId'
-      preLoaderRoute: typeof TestTabIdImport
-      parentRoute: typeof TestImport
-    }
-    '/about/next': {
-      id: '/about/next'
-      path: '/next'
-      fullPath: '/about/next'
-      preLoaderRoute: typeof AboutNextLazyImport
-      parentRoute: typeof AboutLazyImport
-    }
-    '/about/system': {
-      id: '/about/system'
-      path: '/system'
-      fullPath: '/about/system'
-      preLoaderRoute: typeof AboutSystemLazyImport
-      parentRoute: typeof AboutLazyImport
-    }
-    '/posts/': {
-      id: '/posts/'
-      path: '/posts'
-      fullPath: '/posts'
-      preLoaderRoute: typeof PostsIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/test": {
+      id: "/test";
+      path: "/test";
+      fullPath: "/test";
+      preLoaderRoute: typeof TestImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/about": {
+      id: "/about";
+      path: "/about";
+      fullPath: "/about";
+      preLoaderRoute: typeof AboutLazyImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/posts/$postId": {
+      id: "/posts/$postId";
+      path: "/posts/$postId";
+      fullPath: "/posts/$postId";
+      preLoaderRoute: typeof PostsPostIdImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/test/$tabId": {
+      id: "/test/$tabId";
+      path: "/$tabId";
+      fullPath: "/test/$tabId";
+      preLoaderRoute: typeof TestTabIdImport;
+      parentRoute: typeof TestImport;
+    };
+    "/about/next": {
+      id: "/about/next";
+      path: "/next";
+      fullPath: "/about/next";
+      preLoaderRoute: typeof AboutNextLazyImport;
+      parentRoute: typeof AboutLazyImport;
+    };
+    "/about/system": {
+      id: "/about/system";
+      path: "/system";
+      fullPath: "/about/system";
+      preLoaderRoute: typeof AboutSystemLazyImport;
+      parentRoute: typeof AboutLazyImport;
+    };
+    "/posts/": {
+      id: "/posts/";
+      path: "/posts";
+      fullPath: "/posts";
+      preLoaderRoute: typeof PostsIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface TestRouteChildren {
-  TestTabIdRoute: typeof TestTabIdRoute
+  TestTabIdRoute: typeof TestTabIdRoute;
 }
 
 const TestRouteChildren: TestRouteChildren = {
   TestTabIdRoute: TestTabIdRoute,
-}
+};
 
-const TestRouteWithChildren = TestRoute._addFileChildren(TestRouteChildren)
+const TestRouteWithChildren = TestRoute._addFileChildren(TestRouteChildren);
 
 interface AboutLazyRouteChildren {
-  AboutNextLazyRoute: typeof AboutNextLazyRoute
-  AboutSystemLazyRoute: typeof AboutSystemLazyRoute
+  AboutNextLazyRoute: typeof AboutNextLazyRoute;
+  AboutSystemLazyRoute: typeof AboutSystemLazyRoute;
 }
 
 const AboutLazyRouteChildren: AboutLazyRouteChildren = {
   AboutNextLazyRoute: AboutNextLazyRoute,
   AboutSystemLazyRoute: AboutSystemLazyRoute,
-}
+};
 
 const AboutLazyRouteWithChildren = AboutLazyRoute._addFileChildren(
   AboutLazyRouteChildren,
-)
+);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/test': typeof TestRouteWithChildren
-  '/about': typeof AboutLazyRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/test/$tabId': typeof TestTabIdRoute
-  '/about/next': typeof AboutNextLazyRoute
-  '/about/system': typeof AboutSystemLazyRoute
-  '/posts': typeof PostsIndexRoute
+  "/": typeof IndexLazyRoute;
+  "/test": typeof TestRouteWithChildren;
+  "/about": typeof AboutLazyRouteWithChildren;
+  "/posts/$postId": typeof PostsPostIdRoute;
+  "/test/$tabId": typeof TestTabIdRoute;
+  "/about/next": typeof AboutNextLazyRoute;
+  "/about/system": typeof AboutSystemLazyRoute;
+  "/posts": typeof PostsIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/test': typeof TestRouteWithChildren
-  '/about': typeof AboutLazyRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/test/$tabId': typeof TestTabIdRoute
-  '/about/next': typeof AboutNextLazyRoute
-  '/about/system': typeof AboutSystemLazyRoute
-  '/posts': typeof PostsIndexRoute
+  "/": typeof IndexLazyRoute;
+  "/test": typeof TestRouteWithChildren;
+  "/about": typeof AboutLazyRouteWithChildren;
+  "/posts/$postId": typeof PostsPostIdRoute;
+  "/test/$tabId": typeof TestTabIdRoute;
+  "/about/next": typeof AboutNextLazyRoute;
+  "/about/system": typeof AboutSystemLazyRoute;
+  "/posts": typeof PostsIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/test': typeof TestRouteWithChildren
-  '/about': typeof AboutLazyRouteWithChildren
-  '/posts/$postId': typeof PostsPostIdRoute
-  '/test/$tabId': typeof TestTabIdRoute
-  '/about/next': typeof AboutNextLazyRoute
-  '/about/system': typeof AboutSystemLazyRoute
-  '/posts/': typeof PostsIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexLazyRoute;
+  "/test": typeof TestRouteWithChildren;
+  "/about": typeof AboutLazyRouteWithChildren;
+  "/posts/$postId": typeof PostsPostIdRoute;
+  "/test/$tabId": typeof TestTabIdRoute;
+  "/about/next": typeof AboutNextLazyRoute;
+  "/about/system": typeof AboutSystemLazyRoute;
+  "/posts/": typeof PostsIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/test'
-    | '/about'
-    | '/posts/$postId'
-    | '/test/$tabId'
-    | '/about/next'
-    | '/about/system'
-    | '/posts'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/test"
+    | "/about"
+    | "/posts/$postId"
+    | "/test/$tabId"
+    | "/about/next"
+    | "/about/system"
+    | "/posts";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/test'
-    | '/about'
-    | '/posts/$postId'
-    | '/test/$tabId'
-    | '/about/next'
-    | '/about/system'
-    | '/posts'
+    | "/"
+    | "/test"
+    | "/about"
+    | "/posts/$postId"
+    | "/test/$tabId"
+    | "/about/next"
+    | "/about/system"
+    | "/posts";
   id:
-    | '__root__'
-    | '/'
-    | '/test'
-    | '/about'
-    | '/posts/$postId'
-    | '/test/$tabId'
-    | '/about/next'
-    | '/about/system'
-    | '/posts/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/test"
+    | "/about"
+    | "/posts/$postId"
+    | "/test/$tabId"
+    | "/about/next"
+    | "/about/system"
+    | "/posts/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  TestRoute: typeof TestRouteWithChildren
-  AboutLazyRoute: typeof AboutLazyRouteWithChildren
-  PostsPostIdRoute: typeof PostsPostIdRoute
-  PostsIndexRoute: typeof PostsIndexRoute
+  IndexLazyRoute: typeof IndexLazyRoute;
+  TestRoute: typeof TestRouteWithChildren;
+  AboutLazyRoute: typeof AboutLazyRouteWithChildren;
+  PostsPostIdRoute: typeof PostsPostIdRoute;
+  PostsIndexRoute: typeof PostsIndexRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -246,11 +246,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRouteWithChildren,
   PostsPostIdRoute: PostsPostIdRoute,
   PostsIndexRoute: PostsIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
