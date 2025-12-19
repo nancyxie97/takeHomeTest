@@ -15,7 +15,6 @@ const SplitTable = ({
     tabs: TableTab[];
     oppositeSideValue: TableTab;
 }) => {
-    // convert tabs into { value, label } format for DesignedSelect
     const options = tabs
         .filter((t) => t !== oppositeSideValue)
         .map((tab) => ({ value: tab, label: humanizeIdentifier(tab) }));
