@@ -1,3 +1,4 @@
+//Navigation route links in both mobile and desktop
 import { NAVIGATION_CONFIG } from '@/data/NavigationConfig'
 import { useNavBar } from '@/hooks/useNavBar'
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';

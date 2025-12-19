@@ -11,6 +11,9 @@ import holdingsData from "@/data/tableOverview/holdings.json";
 import riskData from "@/data/tableOverview/risk.json";
 import transactionsData from "@/data/tableOverview/transactions.json";
 
+
+// Returing Table Overview data/column def/ gridOptions depending on which category that was selected
+
 export type TableTab = "credit" | "holdings" | "risk" | "transactions";
 
 interface UseTableDataReturn {
@@ -45,7 +48,7 @@ const TABLE_CONFIG: Record<
               name: "Collapse All Groups",
               action: () => params.api.collapseAll(),
             },
-            { // fix: use a proper separator MenuItemDef object instead of string
+            {
               name: "separator",
             }
           );

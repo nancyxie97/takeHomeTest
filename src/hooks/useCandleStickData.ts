@@ -3,28 +3,30 @@ import msft from "@/data/candleStick/msft.json";
 import tsla from "@/data/candleStick/tsla.json";
 import { useMemo } from "react";
 
+//Returns candlestick data depedning on the ticker
+
 export type CandleSticks = "aapl" | "msft" | "tsla";
 interface UseCandleStickDataReturn {
-  data: Record<number, unknown>[];
+    data: Record<number, unknown>[];
 }
 
 const CANDLESTICK_CONFIG: Record<
-  CandleSticks,
-  { data: Record<number, unknown>[] }
+    CandleSticks,
+    { data: Record<number, unknown>[] }
 > = {
-  aapl: {
-    data: aapl,
-  },
-  msft: {
-    data: msft,
-  },
-  tsla: {
-    data: tsla,
-  },
+    aapl: {
+        data: aapl,
+    },
+    msft: {
+        data: msft,
+    },
+    tsla: {
+        data: tsla,
+    },
 };
 
 export const useCandleStickData = (
-  name: CandleSticks,
+    name: CandleSticks,
 ): UseCandleStickDataReturn => {
-  return useMemo(() => CANDLESTICK_CONFIG[name], [name]);
+    return useMemo(() => CANDLESTICK_CONFIG[name], [name]);
 };

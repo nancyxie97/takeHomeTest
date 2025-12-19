@@ -1,3 +1,4 @@
+//Table wrapper 
 import { TableTab } from '@/hooks/useTableData';
 import TablePanel from './TablePanel';
 

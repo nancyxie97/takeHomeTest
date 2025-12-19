@@ -1,3 +1,4 @@
+//Split view in Table Overview with a selection dropdown
 import { TableTab } from "@/hooks/useTableData";
 import { humanizeIdentifier } from "@/utils/humanize";
 import TableCard from "./TableCard";

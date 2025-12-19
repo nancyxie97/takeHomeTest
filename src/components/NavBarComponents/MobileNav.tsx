@@ -1,4 +1,6 @@
 
+//Sidebar navigation in mobile 
+//Similar to NavLinks.tsx
 import NavLinks from './NavLinks';
 import LightDarkModeToggle from '../LightDarkModeToggle';
 import { useNavBar } from '@/hooks/useNavBar';

@@ -1,3 +1,4 @@
+// The NavBar with the logo/ links / dark&light mode/ hamburger bar
 import EngineersGateLogo from '@/assets/EngineersGateLogo';
 import { useNavBar } from '@/hooks/useNavBar';
 import { Bars3Icon } from '@heroicons/react/24/outline';
